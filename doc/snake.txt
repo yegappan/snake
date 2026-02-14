@@ -1,0 +1,56 @@
+*snake.txt*  Snake game for Vim                            Feb 13, 2026
+
+===============================================================================
+CONTENTS                                                *snake-contents*
+
+  1. Intro ............................................ |snake-intro|
+  2. Installation ..................................... |snake-install|
+  3. Usage ............................................ |snake-usage|
+  4. Keys ............................................. |snake-keys|
+
+===============================================================================
+INTRO                                                   *snake-intro*
+
+Snake is a Vim9script popup-window game. A snake moves continuously on a grid
+and must eat numbers 1-9 in order. Each number makes the snake longer. The
+game ends if the snake hits a wall, hits itself, or after eating 9.
+
+===============================================================================
+INSTALLATION                                            *snake-install*
+
+Place this plugin in a package directory, for example:
+
+  ~/.vim/pack/games/start/snake/
+
+Then load it with:
+
+  :packadd snake
+
+If you want the help tags:
+
+  :helptags ~/.vim/pack/games/start/snake/doc
+
+===============================================================================
+USAGE                                                   *snake-usage*
+
+Start the game with:
+
+  :SnakeGame
+
+===============================================================================
+KEYS                                                    *snake-keys*
+
+Movement:
+  h, j, k, l    Move left, down, up, right
+  <Left>       Move left
+  <Right>      Move right
+  <Up>         Move up
+  <Down>       Move down
+
+Other:
+  q            Quit/close
+  r            Restart after game over
+
+===============================================================================
+
+vim:ft=help
