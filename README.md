@@ -4,19 +4,88 @@ A Vim9script snake game that runs in a popup window. The snake moves
 continuously and must eat numbers 1-9 in order. Each number grows the snake.
 The game ends if the snake hits a wall, hits itself, or after eating 9.
 
-## Install (packadd)
+## Installation
 
-Place this plugin in a package directory, for example:
+### Using Git
+If you have git installed, run the following command in your terminal:
 
-- `~/.vim/pack/games/start/snake/`
+**Unix/Linux/macOS:**
 
-Then load it with:
+```bash
+git clone https://github.com/yegappan/snake.git ~/.vim/pack/downloads/opt/snake
+```
+**Windows (cmd.exe):**
 
-- `:packadd snake`
+```cmd
+git clone https://github.com/yegappan/snake.git %USERPROFILE%\vimfiles\pack\downloads\opt\snake
+```
 
-Generate help tags (optional):
+### Using a ZIP file
+If you prefer not to use Git:
 
-- `:helptags ~/.vim/pack/games/start/snake/doc`
+**Unix/Linux/macOS:**
+
+Create the destination directory:
+
+```bash
+mkdir -p ~/.vim/pack/downloads/opt/
+```
+
+Download the plugin ZIP file from GitHub and extract its contents into the directory created above.
+
+*Note:* GitHub usually names the extracted folder snake-main. Rename it to snake so the final path looks like this:
+
+```plaintext
+~/.vim/pack/downloads/opt/snake/
+├── plugin/
+├── autoload/
+└── doc/
+```
+
+**Windows (cmd.exe):**
+
+Create the destination directory:
+
+```cmd
+if not exist "%USERPROFILE%\vimfiles\pack\downloads\opt" mkdir "%USERPROFILE%\vimfiles\pack\downloads\opt"
+```
+
+Download the plugin ZIP file from GitHub and extract its contents into that directory.
+
+*Note:* Rename the extracted folder (usually snake-main) to snake so the path matches:
+
+```plaintext
+%USERPROFILE%\vimfiles\pack\downloads\opt\snake\
+├── plugin/
+├── autoload/
+└── doc/
+```
+
+### Finalizing Setup
+Since this plugin is installed in the opt (optional) directory, it will not load automatically. Add the following line to your .vimrc (Unix) or _vimrc (Windows):
+
+```viml
+packadd snake
+```
+
+After adding the line, restart Vim and run the following command to enable the help documentation:
+
+```viml
+:helptags ALL
+```
+
+### Plugin Manager Installation
+
+If using a plugin manager like vim-plug, add to your .vimrc or init.vim:
+
+   ```viml
+   Plug 'path/to/snake'
+   ```
+
+Then run `:PlugInstall` and `:helptags ALL`
+
+For other plugin managers (Vundle, Pathogen, etc.), follow their standard
+installation procedures for local plugins.
 
 ## Usage
 
