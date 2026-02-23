@@ -1,39 +1,42 @@
-# Vim Snake Game
+# Snake Game in Vim9script
 
-A Vim9script snake game that runs in a popup window. The snake moves
-continuously and must eat numbers 1-9 in order. Each number grows the snake.
-The game ends if the snake hits a wall, hits itself, or after eating 9.
+A classic Snake game playable within Vim. Guide the snake to eat food in numerical order (1-9) while avoiding walls and yourself. Written in Vim9script to showcase modern language features.
+
+## Features
+
+- **Continuous Movement**: Snake moves automatically in the current direction
+- **Sequential Feeding**: Eat numbers 1-9 in order to complete the level
+- **Growing Snake**: Each food eaten increases snake length
+- **Popup Window UI**: Game displays in a centered, bordered window
+- **Scoring System**: Track your progress and high score
+- **Modern Vim9script**: Demonstrates game loop, state management, and collision detection
+
+## Requirements
+
+- Vim 9.0 or later with Vim9script support
+- **NOT compatible with Neovim** (requires Vim9-specific features)
 
 ## Installation
 
 ### Using Git
-If you have git installed, run the following command in your terminal:
 
 **Unix/Linux/macOS:**
-
 ```bash
 git clone https://github.com/yegappan/snake.git ~/.vim/pack/downloads/opt/snake
 ```
-**Windows (cmd.exe):**
 
+**Windows (cmd.exe):**
 ```cmd
 git clone https://github.com/yegappan/snake.git %USERPROFILE%\vimfiles\pack\downloads\opt\snake
 ```
 
 ### Using a ZIP file
-If you prefer not to use Git:
 
 **Unix/Linux/macOS:**
-
-Create the destination directory:
-
 ```bash
 mkdir -p ~/.vim/pack/downloads/opt/
 ```
-
-Download the plugin ZIP file from GitHub and extract its contents into the directory created above.
-
-*Note:* GitHub usually names the extracted folder snake-main. Rename it to snake so the final path looks like this:
+Download the ZIP file from GitHub and extract it into the directory above. Rename the extracted folder (usually snake-main) to `snake` so the final path matches:
 
 ```plaintext
 ~/.vim/pack/downloads/opt/snake/
@@ -43,16 +46,10 @@ Download the plugin ZIP file from GitHub and extract its contents into the direc
 ```
 
 **Windows (cmd.exe):**
-
-Create the destination directory:
-
 ```cmd
 if not exist "%USERPROFILE%\vimfiles\pack\downloads\opt" mkdir "%USERPROFILE%\vimfiles\pack\downloads\opt"
 ```
-
-Download the plugin ZIP file from GitHub and extract its contents into that directory.
-
-*Note:* Rename the extracted folder (usually snake-main) to snake so the path matches:
+Download the ZIP file from GitHub and extract it into the directory above. Rename the extracted folder (usually snake-main) to `snake` so the final path matches:
 
 ```plaintext
 %USERPROFILE%\vimfiles\pack\downloads\opt\snake\
@@ -62,49 +59,75 @@ Download the plugin ZIP file from GitHub and extract its contents into that dire
 ```
 
 ### Finalizing Setup
-Since this plugin is installed in the opt (optional) directory, it will not load automatically. Add the following line to your .vimrc (Unix) or _vimrc (Windows):
 
+Since the plugin is in the `opt` directory, add this to your `.vimrc` (Unix) or `_vimrc` (Windows):
 ```viml
 packadd snake
 ```
 
-After adding the line, restart Vim and run the following command to enable the help documentation:
-
+Then restart Vim and run:
 ```viml
 :helptags ALL
 ```
 
 ### Plugin Manager Installation
 
-If using a plugin manager like vim-plug, add to your .vimrc or init.vim:
+If using vim-plug, add to your config:
+```viml
+Plug 'path/to/snake'
+```
+Then run `:PlugInstall` and `:helptags ALL`.
 
-   ```viml
-   Plug 'path/to/snake'
-   ```
-
-Then run `:PlugInstall` and `:helptags ALL`
-
-For other plugin managers (Vundle, Pathogen, etc.), follow their standard
-installation procedures for local plugins.
+For other plugin managers, follow their standard procedure for local plugins.
 
 ## Usage
 
-Start the game with:
+### Starting the Game
 
-- `:SnakeGame`
+```vim
+:SnakeGame
+```
 
-## Keys
+### Controls
 
-Movement:
+| Key | Action |
+|-----|--------|
+| `h` | Move left |
+| `j` | Move down |
+| `k` | Move up |
+| `l` | Move right |
+| `←` / `→` / `↑` / `↓` | Move in matching direction |
+| `q` | Quit game |
+| `r` | Restart after game over |
 
-- `h`, `j`, `k`, `l` - left, down, up, right
-- Arrow keys - move in the matching direction
+### Game Rules
 
-Other:
+- **Objective**: Eat food numbered 1-9 in sequential order to win
+- **Movement**: Snake moves continuously in the current direction
+- **Eating**: Move the snake's head to the food to eat it
+- **Growth**: Snake grows by one segment each time it eats
+- **Collision - Walls**: Hitting the border ends the game
+- **Collision - Self**: Hitting your own body ends the game
+- **Win Condition**: Successfully eat all 9 food items in order
 
-- `q` - quit/close
-- `r` - restart after game over
+### Strategy Tips
 
-## Credits
+- Plan ahead to avoid cornering yourself
+- Use the edges strategically to manage your snake's length
+- Remember which food number you need next
+- Early moves determine later options, so think carefully
 
-All files in this repository were generated by GitHub Copilot.
+## Vim9 Language Features Demonstrated
+
+- **Game Loop**: Real-time game execution with frame updates
+- **State Management**: Snake position, direction, food location tracking
+- **Collision Detection**: Multiple collision types (walls, self, food)
+- **Type Checking**: Full type annotations throughout
+- **Classes**: Organized game components with encapsulation
+- **Popup Windows**: Modern UI using Vim's popup window API
+- **Input Handling**: Responsive keyboard controls during gameplay
+
+## License
+
+This plugin is licensed under the MIT License. See the LICENSE file in the repository for details.
+
