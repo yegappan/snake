@@ -1,22 +1,30 @@
-*snake.txt*  Snake game for Vim                            Feb 13, 2026
+*snake.txt*  Snake Game for Vim9
 
-===============================================================================
-CONTENTS                                                *snake-contents*
+================================================================================
+CONTENTS                                                  *snake-contents*
 
-  1. Intro ............................................ |snake-intro|
-  2. Installation ..................................... |snake-install|
-  3. Usage ............................................ |snake-usage|
-  4. Keys ............................................. |snake-keys|
+  1. Introduction .......................... |snake-intro|
+  2. Installation .......................... |snake-install|
+  3. Commands ............................. |snake-commands|
+  4. Controls ............................. |snake-controls|
+  5. Game Rules ........................... |snake-rules|
+  6. Strategy Tips ........................ |snake-strategy|
+  7. Configuration ........................ |snake-config|
+  8. Vim9 Script Features ................. |snake-vim9|
 
-===============================================================================
-INTRO                                                   *snake-intro*
+================================================================================
+1. INTRODUCTION                                            *snake-intro*
 
-Snake is a Vim9script popup-window game. A snake moves continuously on a grid
-and must eat numbers 1-9 in order. Each number makes the snake longer. The
-game ends if the snake hits a wall, hits itself, or after eating 9.
+Snake is a classic arcade game implemented in Vim9script. Guide a growing
+snake around a grid to eat prey (numbers 1-9 in sequence). Each time you eat
+a number, the snake grows longer and you move to the next number. The game
+ends if the snake collides with a wall, itself, or completes all 9 numbers.
 
-===============================================================================
-INSTALLATION                                            *snake-install*
+The game runs in a centered popup window and supports both arrow keys and
+hjkl navigation for movement.
+
+================================================================================
+2. INSTALLATION                                       *snake-install*
 
 Requirements~
 
@@ -92,27 +100,132 @@ Then run `:PlugInstall` and `:helptags ALL`
 For other plugin managers (Vundle, Pathogen, etc.), follow their standard
 installation procedures for local plugins.
 
-===============================================================================
-USAGE                                                   *snake-usage*
+================================================================================
+3. COMMANDS                                           *snake-commands*
 
-Start the game with:
+:SnakeGame
+    Start a new Snake game in a popup window.
 
-  :SnakeGame
-
-===============================================================================
-KEYS                                                    *snake-keys*
+================================================================================
+4. CONTROLS                                            *snake-controls*
 
 Movement:
-  h, j, k, l    Move left, down, up, right
-  <Left>       Move left
-  <Right>      Move right
-  <Up>         Move up
-  <Down>       Move down
+  h or <Left>     Move snake left
+  l or <Right>    Move snake right
+  k or <Up>       Move snake up
+  j or <Down>     Move snake down
 
-Other:
-  q            Quit/close
-  r            Restart after game over
+Game Control:
+  r               Restart after game over
+  q               Quit/close the game
 
-===============================================================================
+Note: The snake moves continuously once a direction is set. Rapid key presses
+allow you to change direction before the next movement tick.
 
-vim:ft=help
+================================================================================
+5. GAME RULES                                          *snake-rules*
+
+Objective~
+Guide the snake to eat prey in sequential order (1 through 9). Avoid colliding
+with walls or the snake's own body.
+
+How to Play~
+1. The game starts with a small snake in the center of the grid
+2. Prey appears as numbers on the grid
+3. Navigate the snake to eat numbers in order: 1, 2, 3... up to 9
+4. Each number eaten makes the snake longer
+5. Continue until you eat all 9 numbers or the snake dies
+
+Win Condition~
+Successfully eat all 9 numbers in sequence without hitting walls or yourself.
+
+Lose Condition~
+Game ends if:
+  • The snake hits a wall (grid boundary)
+  • The snake hits its own body
+  • At any point, no more prey is available
+
+================================================================================
+6. STRATEGY TIPS                                         *snake-strategy*
+
+Movement Patterns~
+  • Move in predictable patterns to avoid trapping yourself
+  • Circle the grid edges before moving to the center
+  • Never allow your body to block the path to food
+
+Planning Ahead~
+  • Always plan at least 2-3 moves ahead
+  • Look for food that won't trap you in a corner
+  • Use the full grid area to give yourself escape routes
+
+Avoid Common Mistakes~
+  • Don't chase diagonal prey - plan a logical path
+  • Keep segments of your body spread out, not clustered
+  • Never back yourself into a dead end
+  • Use wall bounces strategically (snake wraps around edges)
+
+Progression~
+  • Start slowly to understand movement mechanics
+  • Build speed gradually as you gain confidence
+  • The snake accelerates after eating multiple prey
+  • Higher numbered prey items may appear in difficult positions
+
+================================================================================
+7. VIM9 SCRIPT FEATURES                               *snake-vim9*
+
+This plugin demonstrates several modern Vim9script capabilities:
+
+Classes~
+  • Snake: Manages snake body, direction, and growth logic
+  • Board: Grid representation and collision detection
+  • Game: Core game state and turn progression
+  • PopupView: Popup window creation and rendering
+
+Type System~
+  • Type annotations for all function parameters and return types
+  • Enums for direction constants (Up, Down, Left, Right)
+  • Type aliases for semantic clarity (Position, Cell, etc.)
+
+Features~
+  • Popup windows for centered, distraction-free gameplay
+  • Event-driven key handling with hjkl/arrow navigation
+  • Modular architecture separating game logic from UI rendering
+  • Clean separation of concerns across dedicated modules
+
+Design Patterns~
+  • Singleton pattern for game instance management
+  • Model-View separation for clean architecture
+  • State machine for game phases (Playing, GameOver, Victory)
+
+================================================================================
+7. VIM9 SCRIPT FEATURES                               *snake-vim9*
+
+================================================================================
+
+================================================================================
+8. CONFIGURATION                                       *snake-config*
+
+The Snake plugin has minimal configuration. The game behavior is fixed:
+
+• Grid size: 10x10 cells (standard Arcade Snake)
+• Prey sequence: 1-9 (fixed)
+• Movement speed: Continuous (adjustable by player key frequency)
+• Collision detection: Walls and self-collision end game
+
+Gameplay Customization~
+
+While the plugin itself has no configuration variables, you can modify
+game behavior by:
+  • Adjusting how quickly you press keys to control snake speed
+  • Practicing different movement patterns
+  • Playing multiple games to improve positioning
+
+For future enhancement, the modular architecture would support adding:
+  • Custom grid sizes
+  • Variable game speeds
+  • Different prey counts
+  • Custom color schemes
+
+================================================================================
+
+vim:tw=78:ts=8:ft=help:norl:
